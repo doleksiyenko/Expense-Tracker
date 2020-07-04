@@ -5,4 +5,9 @@ const schema = Joi.object({
     password: Joi.string().min(8).required(),
 });
 
+// const validateUserDetails = (body) => {
+//     const { error } = schema.validate(body, schema);
+//     return error;
+// };
+
 module.exports = schema;
