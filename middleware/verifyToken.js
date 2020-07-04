@@ -11,6 +11,6 @@ module.exports = (req, res, next) => {
         req.user = verified;
         next();
     } catch (error) {
-        req.status(400).send("Token is invalid.");
+        res.status(400).send("Token is invalid.");
     }
 };
