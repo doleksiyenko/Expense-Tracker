@@ -8,6 +8,14 @@ const User = require("../models/User");
 const validateUserDetails = require("../validation");
 
 router.post("/register", async (req, res) => {
+    // check if the same username already exists in the database, if it does, reject the registration
+    const userExists = await User.findOne({
+        displayName: req.body.displayName,
+    });
+    if (userExists)
+        return res
+            .status(400)
+            .send("A user with this username already exists!");
     // validate
     const validation = validateUserDetails.validate({
         displayName: req.body.displayName.trim(),
@@ -50,22 +58,21 @@ router.post("/login", async (req, res) => {
         const userLogin = await User.findOne({
             displayName: req.body.displayName.trim(),
         });
-        if (userLogin) {
-            // if the user does exist in the db, check whether the password is correct, if not send to catch.
-            const loggedIn = bcrypt.compareSync(
-                req.body.password,
-                userLogin.password
-            );
-            if (loggedIn) {
-                // the user is logged in
-                res.status(200).send("Logged In");
-            } else {
-                res.status(400).send(
-                    "The user/password combination is incorrect."
-                );
-            }
+        if (!userLogin)
+            return res
+                .status(401)
+                .send("The user/password combination is incorrect.");
+
+        // if the user does exist in the db, check whether the password is correct, if not send to catch.
+        const loggedIn = bcrypt.compareSync(
+            req.body.password,
+            userLogin.password
+        );
+        if (loggedIn) {
+            // the user is logged in
+            res.status(200).send("Logged In");
         } else {
-            res.status(400).send("The user/password combination is incorrect.");
+            res.status(401).send("The user/password combination is incorrect.");
         }
     }
 });
