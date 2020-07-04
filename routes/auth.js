@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 // Models
 const User = require("../models/User");
@@ -60,7 +61,7 @@ router.post("/login", async (req, res) => {
         });
         if (!userLogin)
             return res
-                .status(401)
+                .status(400)
                 .send("The user/password combination is incorrect.");
 
         // if the user does exist in the db, check whether the password is correct, if not send to catch.
@@ -70,9 +71,15 @@ router.post("/login", async (req, res) => {
         );
         if (loggedIn) {
             // the user is logged in
-            res.status(200).send("Logged In");
+            // create a JWT token for the user
+            // create a token and expire it in an hour
+            const token = jwt.sign({ id: userLogin.id }, process.env.JWT_KEY, {
+                expiresIn: 3600,
+            });
+            res.status(200);
+            res.json({ token });
         } else {
-            res.status(401).send("The user/password combination is incorrect.");
+            res.status(400).send("The user/password combination is incorrect.");
         }
     }
 });
