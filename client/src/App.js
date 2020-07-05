@@ -1,9 +1,19 @@
 import React from "react";
-import logo from "./logo.svg";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+//components
+import TransactionDashboard from "./components/TransactionDashboard/TransactionDashboard";
+import Login from "./components/Login/Login";
+
 import "./App.css";
 
 function App() {
-    return <div className="App">Transactions</div>;
+    return (
+        <Router>
+            <PrivateRoute exact path="/" component={TransactionDashboard} />
+            <Route exact path="/login" component={Login}></Route>
+        </Router>
+    );
 }
 
 export default App;
