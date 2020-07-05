@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Route, Redirect, useHistory } from "react-router-dom";
+// Context
+import { AuthContext } from "../../context/AuthContext";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-    const [auth, setAuth] = useState(false);
+    const [auth, setAuth] = useContext(AuthContext);
     const [tokenValidated, setTokenValidated] = useState(false);
     const history = useHistory();
 
@@ -25,8 +27,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
                 // if the token successfully connected to the API
                 if (response.status === 200) {
                     setAuth(true);
-                    history.push("/");
                     setTokenValidated(true);
+                    history.push("/");
                 } else {
                     // couldn't successfully get from the API, token is invalid, remove token
                     setAuth(false);
