@@ -53,7 +53,7 @@ router.post("/login", async (req, res) => {
     });
     // check whether the formatting on the input fields is correct.
     if (validation.error) {
-        res.status(400).send(validation.error.details[0].message);
+        res.status(400).json({ error: validation.error.details[0].message });
     } else {
         // try to find the user in the database, if they do not exist, exit
         const userLogin = await User.findOne({
@@ -62,7 +62,7 @@ router.post("/login", async (req, res) => {
         if (!userLogin)
             return res
                 .status(400)
-                .send("The user/password combination is incorrect.");
+                .json({ error: "The user/password combination is incorrect." });
 
         // if the user does exist in the db, check whether the password is correct, if not send to catch.
         const loggedIn = bcrypt.compareSync(
@@ -79,7 +79,9 @@ router.post("/login", async (req, res) => {
             res.status(200);
             res.json({ token });
         } else {
-            res.status(400).send("The user/password combination is incorrect.");
+            res.status(400).json({
+                error: "The user/password combination is incorrect.",
+            });
         }
     }
 });

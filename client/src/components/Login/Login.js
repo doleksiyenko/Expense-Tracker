@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+
+    const history = useHistory();
 
     const logIn = async (e) => {
         e.preventDefault();
@@ -27,6 +30,7 @@ const Login = () => {
                     // if the login is successful, get the authentication token
                     console.log(token);
                     localStorage.setItem("auth-token", token.token);
+                    history.push("/");
                 } else {
                     // a bad request, show the an error card
                     console.log(token);

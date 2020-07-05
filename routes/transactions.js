@@ -10,7 +10,7 @@ router.post("/transactions", verifyToken, async (req, res) => {
         const transactions = await Transaction.find({ userId: req.user.id });
         res.status(200).json(transactions);
     } catch (error) {
-        res.status(500).send("Could not retrieve transactions.");
+        res.status(500).json({ error: "Could not retrieve transactions." });
     }
 });
 
