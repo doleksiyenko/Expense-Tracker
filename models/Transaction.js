@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const TransactionSchema = new Schema({
     userId: { type: String, required: true },
-    expense: { type: String, required: true },
+    expense: { type: Number, required: true },
     expenseMessage: String,
     transactionDate: {
         type: Date,
