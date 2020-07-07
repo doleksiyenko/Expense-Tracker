@@ -1,0 +1,12 @@
+#transaction-dashboard {
+    height: 100vh;
+    background-color: aliceblue;
+}
+
+#main-content {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

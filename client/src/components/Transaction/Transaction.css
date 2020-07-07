@@ -1,0 +1,9 @@
+#transaction-card-addition {
+    font-size: 1.5em;
+    width: 200px;
+}
+
+#transaction-card-addition > span {
+    color: rgb(5, 231, 5);
+    background-color: rgb(5, 231, 5);
+}

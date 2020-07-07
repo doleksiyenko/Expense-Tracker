@@ -1,42 +1,21 @@
-import React, { useContext, useEffect } from "react";
-import { TransactionContext } from "../../context/TransactionContext";
+import React from "react";
+
+// components
+import Transactions from "../Transactions/Transactions";
+import TransactionHeader from "../TransactionHeader/TransactionHeader";
+
+// styles
+import "./TransactionDashboard.css";
+import TransactionTotals from "../TransactionTotals/TransactionTotals";
 
 const TransactionDashboard = () => {
-    // reducer for the user's transactions
-    const [transaction, setTransactions] = useContext(TransactionContext);
-    useEffect(() => {
-        const getTransactions = async () => {
-            // get the token from local storage
-            let token = localStorage.getItem("auth-token");
-            // try to fetch the transactions from the server
-            const response = await fetch(
-                "http://localhost:5000/api/transactions",
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        "auth-token": token,
-                    },
-                    method: "POST",
-                }
-            );
-            const transactions = await response.json();
-            if (response.status === 200) {
-                setTransactions(transactions);
-            } else {
-                return setTransactions([transactions.error]);
-            }
-        };
-        getTransactions();
-    }, []);
-
     return (
-        <div>
-            <h1>TransactionDashboard</h1>
-            {transaction.map((transaction) => (
-                <p key={transaction._id}>
-                    {transaction.expenseMessage}, {transaction.expense}
-                </p>
-            ))}
+        <div id="transaction-dashboard">
+            <TransactionHeader />
+            <div id="main-content">
+                <TransactionTotals />
+                <Transactions />
+            </div>
         </div>
     );
 };

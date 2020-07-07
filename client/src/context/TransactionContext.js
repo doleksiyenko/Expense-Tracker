@@ -5,9 +5,9 @@ export const TransactionContext = createContext();
 
 // provide the transaction state context to children
 export const TransactionProvider = ({ children }) => {
-    const [transaction, setTransactions] = useState([]);
+    const [transactions, setTransactions] = useState([]);
     return (
-        <TransactionContext.Provider value={[transaction, setTransactions]}>
+        <TransactionContext.Provider value={[transactions, setTransactions]}>
             {children}
         </TransactionContext.Provider>
     );

@@ -1,0 +1,28 @@
+#transaction-totals {
+    font-size: 4em;
+    margin-top: 10px;
+    width: 65vw;
+    height: 10vh;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.verticalLine {
+    background-color: rgba(179, 179, 179, 0.5);
+    height: 100%;
+    width: 3px;
+    border-radius: 30%;
+}
+
+#total-gain {
+    margin-right: 50px;
+    color: green;
+}
+
+#total-loss {
+    margin-left: 50px;
+    color: #bf211e;
+}
