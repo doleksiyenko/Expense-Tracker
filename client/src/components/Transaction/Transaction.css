@@ -2,7 +2,7 @@
 #transaction-card {
     font-size: 1.5em;
     width: 100%;
-    grid-template-columns: 5fr 5fr 1fr;
+    grid-template-columns: 1fr 4fr 5fr 1fr;
     display: grid;
     padding: 5px 0;
 }
@@ -20,8 +20,6 @@
 
 /* expense amount and expense message */
 #expensemessage {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     margin-left: 10px;
 }
 

@@ -36,12 +36,7 @@ const Transactions = () => {
     return (
         <ul id="transaction-list">
             {transaction.map((transaction) => (
-                <Transaction
-                    key={transaction._id}
-                    transactionId={transaction._id}
-                    expense={transaction.expense}
-                    expenseMessage={transaction.expenseMessage}
-                />
+                <Transaction key={transaction._id} transaction={transaction} />
             ))}
         </ul>
     );

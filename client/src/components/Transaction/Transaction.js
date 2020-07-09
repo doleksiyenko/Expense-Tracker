@@ -3,7 +3,8 @@ import { TransactionContext } from "../../context/TransactionContext";
 import { useHistory } from "react-router-dom";
 import "./Transaction.css";
 
-const Transaction = ({ transactionId, expense, expenseMessage }) => {
+const Transaction = ({ transaction }) => {
+    const { _id, expense, expenseMessage, transactionDate } = transaction;
     const history = useHistory();
     const [transactions, setTransactions] = useContext(TransactionContext);
 
@@ -40,13 +41,14 @@ const Transaction = ({ transactionId, expense, expenseMessage }) => {
 
     return (
         <li id="transaction-card">
+            <span>{transactionDate.slice(0, 10)}</span>
             <span id={expense === Math.abs(expense) ? "gain" : "loss"}>■</span>
             <div id="expensemessage">
                 {expense}, {expenseMessage}
             </div>
             <button
                 id="deleteTransaction"
-                onClick={() => deleteTransaction(transactionId)}
+                onClick={() => deleteTransaction(_id)}
             >
                 <b>x</b>
             </button>
