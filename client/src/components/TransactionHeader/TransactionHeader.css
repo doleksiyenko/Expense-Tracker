@@ -24,4 +24,10 @@
 
 #transaction-header > button:hover {
     cursor: pointer;
+    background: #2393c7;
+}
+
+#transaction-header > button:active {
+    cursor: pointer;
+    background: #1875a0;
 }

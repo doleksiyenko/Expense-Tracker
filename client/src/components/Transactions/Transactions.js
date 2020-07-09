@@ -38,6 +38,7 @@ const Transactions = () => {
             {transaction.map((transaction) => (
                 <Transaction
                     key={transaction._id}
+                    transactionId={transaction._id}
                     expense={transaction.expense}
                     expenseMessage={transaction.expenseMessage}
                 />

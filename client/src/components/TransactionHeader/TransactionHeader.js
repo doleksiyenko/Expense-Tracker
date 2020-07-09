@@ -15,8 +15,11 @@ const TransactionHeader = () => {
             localStorage.removeItem("auth-token");
             history.push("/login");
         } else {
+            // if the token doesn't exist, just push to the login page
+            history.push("/login");
         }
     };
+
     return (
         <div id="transaction-header">
             <h1>Expense Tracker</h1>

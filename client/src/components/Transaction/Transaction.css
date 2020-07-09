@@ -1,9 +1,46 @@
-#transaction-card-addition {
+/* main card */
+#transaction-card {
     font-size: 1.5em;
-    width: 200px;
+    width: 100%;
+    grid-template-columns: 5fr 5fr 1fr;
+    display: grid;
+    padding: 5px 0;
 }
 
-#transaction-card-addition > span {
+/* gain / loss blocks */
+#transaction-card > #gain {
+    margin-left: auto;
     color: rgb(5, 231, 5);
-    background-color: rgb(5, 231, 5);
+}
+
+#transaction-card > #loss {
+    margin-left: auto;
+    color: red;
+}
+
+/* expense amount and expense message */
+#expensemessage {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-left: 10px;
+}
+
+/* delete transaction button */
+#deleteTransaction {
+    color: white;
+    border: 1px aliceblue solid;
+    width: 60px;
+    border-radius: 10%;
+    background: #2ca0d6;
+    margin-left: auto;
+}
+
+#deleteTransaction:hover {
+    background: #2393c7;
+    cursor: pointer;
+}
+
+#deleteTransaction:active {
+    background: #1875a0;
+    cursor: pointer;
 }
