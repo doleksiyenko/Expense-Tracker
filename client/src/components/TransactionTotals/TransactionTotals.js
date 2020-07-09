@@ -16,11 +16,11 @@ const TransactionTotals = () => {
         let positive = 0;
         let negative = 0;
         transactions.forEach((transaction) => {
-            if (Math.abs(transaction.expense) == transaction.expense) {
+            if (Math.abs(transaction.expense) === transaction.expense) {
                 // the transaction is positive, add to gain
                 positive += transaction.expense;
             } else {
-                negative += expense + Math.abs(transaction.expense);
+                negative += Math.abs(transaction.expense);
             }
         });
         setGain(positive);
