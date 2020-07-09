@@ -47,6 +47,7 @@ const Transaction = ({ transaction }) => {
                 {expense}, {expenseMessage}
             </div>
             <button
+                className="primary-button"
                 id="deleteTransaction"
                 onClick={() => deleteTransaction(_id)}
             >

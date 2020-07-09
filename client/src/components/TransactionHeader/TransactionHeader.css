@@ -12,22 +12,8 @@
 }
 
 #transaction-header > button {
-    color: white;
-    border: 0;
     height: 50px;
     width: 80px;
-    border-radius: 10%;
-    background: #2ca0d6;
     margin-right: 20px;
     margin-left: auto;
-}
-
-#transaction-header > button:hover {
-    cursor: pointer;
-    background: #2393c7;
-}
-
-#transaction-header > button:active {
-    cursor: pointer;
-    background: #1875a0;
 }

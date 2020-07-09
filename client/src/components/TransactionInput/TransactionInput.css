@@ -1,0 +1,28 @@
+.roundedInput {
+    padding-left: 0.5em;
+    border-style: solid;
+    font-size: 0.45em;
+    border-radius: 10px;
+}
+
+#transaction-input {
+    font-size: 3.5em;
+    margin-top: 10px;
+    width: 65vw;
+    height: 12vh;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#create-transaction-form {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr 4fr 1fr;
+}
+#transaction-type-selector {
+    width: 100%;
+}

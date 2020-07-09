@@ -23,7 +23,9 @@ const TransactionHeader = () => {
     return (
         <div id="transaction-header">
             <h1>Expense Tracker</h1>
-            <button onClick={Logout}>Logout</button>
+            <button className="primary-button" onClick={Logout}>
+                Logout
+            </button>
         </div>
     );
 };
