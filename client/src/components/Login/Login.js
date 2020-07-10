@@ -2,6 +2,11 @@ import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
+// component
+import EntryHeader from "../EntryHeader/EntryHeader";
+// styles
+import "./Login.css";
+
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -45,25 +50,35 @@ const Login = () => {
 
     return (
         <div>
-            <h1>Login</h1>
-            <form onSubmit={logIn}>
-                <input
-                    value={username}
-                    placeholder="Enter your username!"
-                    onChange={(e) => {
-                        setUsername(e.target.value);
-                    }}
-                ></input>
-                <input
-                    value={password}
-                    type="password"
-                    placeholder="Enter your password"
-                    onChange={(e) => {
-                        setPassword(e.target.value);
-                    }}
-                ></input>
-                <button type="submit">Submit</button>
-            </form>
+            <EntryHeader page={"Login"} />
+            <div>
+                <form id="login-form" onSubmit={logIn}>
+                    <input
+                        className="roundedInput formInput"
+                        value={username}
+                        placeholder="Username"
+                        onChange={(e) => {
+                            setUsername(e.target.value);
+                        }}
+                    ></input>
+                    <input
+                        className="roundedInput formInput"
+                        value={password}
+                        type="password"
+                        placeholder="Password"
+                        onChange={(e) => {
+                            setPassword(e.target.value);
+                        }}
+                    ></input>
+                    <button
+                        style={{ width: 80, height: 40 }}
+                        className="primary-button"
+                        type="submit"
+                    >
+                        Login
+                    </button>
+                </form>
+            </div>
         </div>
     );
 };

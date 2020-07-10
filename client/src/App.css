@@ -14,3 +14,17 @@
     cursor: pointer;
     background: #1875a0;
 }
+
+.roundedInput {
+    padding-left: 0.5em;
+    border-style: solid;
+    border-radius: 10px;
+}
+
+.formInput {
+    font-size: 1.5em;
+}
+
+.formInput:focus {
+    border: 2px #2393c7 solid;
+}

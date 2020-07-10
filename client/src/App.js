@@ -7,6 +7,7 @@ import { TransactionProvider } from "./context/TransactionContext";
 // Components
 import TransactionDashboard from "./components/TransactionDashboard/TransactionDashboard";
 import Login from "./components/Login/Login";
+import Register from "./components/Register/Register";
 
 import "./App.css";
 
@@ -22,6 +23,7 @@ function App() {
                     />
                 </TransactionProvider>
                 <Route exact path="/login" component={Login}></Route>
+                <Route exact path="/register" component={Register}></Route>
             </AuthProvider>
         </Router>
     );
