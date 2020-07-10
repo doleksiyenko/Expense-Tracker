@@ -28,9 +28,9 @@ const TransactionTotals = () => {
     }, [transactions]);
     return (
         <div id="transaction-totals">
-            <span id="total-gain">+{gain}</span>
+            <span id="total-gain">+{Math.round(gain * 100) / 100}</span>
             <div className="verticalLine"></div>
-            <span id="total-loss">-{expense}</span>
+            <span id="total-loss">-{Math.round(expense * 100) / 100}</span>
         </div>
     );
 };

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-
+import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
+import { TransactionContext } from "../../context/TransactionContext";
 // styles
 import "./TransactionInput.css";
 
@@ -7,8 +8,10 @@ const TransactionInput = () => {
     const [value, setValue] = useState("");
     const [expenseMessage, setExpenseMessage] = useState("");
     const [transactionType, setTransactionType] = useState("Expense");
+    const [transactions, setTransactions] = useContext(TransactionContext);
+    const history = useHistory();
 
-    const createTransaction = (e) => {
+    const createTransaction = async (e) => {
         e.preventDefault();
 
         if (isNaN(value)) {
@@ -17,11 +20,39 @@ const TransactionInput = () => {
         }
 
         if (value && expenseMessage) {
-            console.log(
-                Math.round(value * 100) / 100,
-                expenseMessage,
-                transactionType
-            );
+            let decimalValue = Math.round(value * 100) / 100;
+
+            if (transactionType === "Expense") {
+                decimalValue = -decimalValue;
+            }
+            let token = localStorage.getItem("auth-token");
+            // send a create fetch request to the server
+            if (token) {
+                const response = await fetch(
+                    "http://localhost:5000/api/transactions/create",
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                            "auth-token": token,
+                        },
+                        method: "POST",
+                        body: JSON.stringify({
+                            expense: decimalValue,
+                            expenseMessage: expenseMessage,
+                        }),
+                    }
+                );
+                const createdTransaction = await response.json();
+                if (response.status === 201) {
+                    setTransactions([...transactions, createdTransaction]);
+                    setValue("");
+                    setExpenseMessage("");
+                } else {
+                    console.log(response.error);
+                }
+            } else {
+                history.push("/");
+            }
         }
     };
 
