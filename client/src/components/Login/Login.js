@@ -6,6 +6,7 @@ import { AuthContext } from "../../context/AuthContext";
 import EntryHeader from "../EntryHeader/EntryHeader";
 // styles
 import "./Login.css";
+import EntryForm from "../EntryForm/EntryForm";
 
 const Login = () => {
     const [username, setUsername] = useState("");
@@ -51,34 +52,17 @@ const Login = () => {
     return (
         <div>
             <EntryHeader page={"Login"} />
-            <div>
-                <form id="login-form" onSubmit={logIn}>
-                    <input
-                        className="roundedInput formInput"
-                        value={username}
-                        placeholder="Username"
-                        onChange={(e) => {
-                            setUsername(e.target.value);
-                        }}
-                    ></input>
-                    <input
-                        className="roundedInput formInput"
-                        value={password}
-                        type="password"
-                        placeholder="Password"
-                        onChange={(e) => {
-                            setPassword(e.target.value);
-                        }}
-                    ></input>
-                    <button
-                        style={{ width: 80, height: 40 }}
-                        className="primary-button"
-                        type="submit"
-                    >
-                        Login
-                    </button>
-                </form>
-            </div>
+            <span style={{ display: "flex", justifyContent: "center" }}>
+                Login to view your transactions.
+            </span>
+            <EntryForm
+                page={"Login"}
+                submitFunction={logIn}
+                username={username}
+                password={password}
+                setUsername={setUsername}
+                setPassword={setPassword}
+            />
         </div>
     );
 };

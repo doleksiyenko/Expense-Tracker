@@ -1,4 +1,26 @@
-#login-form {
-    display: flex;
-    flex-direction: column;
+#entry-form {
+    display: grid;
+    grid-template-columns: 10fr 1fr;
+}
+
+#entry-form > div {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+#entry-input-top {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+#entry-input-bottom {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0;
+}
+
+#entry-button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }

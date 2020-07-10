@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import EntryHeader from "../EntryHeader/EntryHeader";
-
+import EntryForm from "../EntryForm/EntryForm";
 const Register = ({ page }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -61,24 +61,17 @@ const Register = ({ page }) => {
     return (
         <div>
             <EntryHeader page={"Register"} />
-            <div>
-                <form onSubmit={registerUser}>
-                    <input
-                        className="roundedInput formInput"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        placeholder="Username"
-                    ></input>
-                    <input
-                        className="roundedInput formInput"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Password"
-                        type="password"
-                    ></input>
-                    <button className="primary-button">Register</button>
-                </form>
-            </div>
+            <span style={{ display: "flex", justifyContent: "center" }}>
+                Register a new user.
+            </span>
+            <EntryForm
+                page={"Register"}
+                submitFunction={registerUser}
+                username={username}
+                password={password}
+                setUsername={setUsername}
+                setPassword={setPassword}
+            ></EntryForm>
         </div>
     );
 };

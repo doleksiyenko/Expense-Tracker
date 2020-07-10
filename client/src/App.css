@@ -28,3 +28,9 @@
 .formInput:focus {
     border: 2px #2393c7 solid;
 }
+
+.entryForm {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+}
