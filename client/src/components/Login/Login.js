@@ -11,6 +11,7 @@ import EntryForm from "../EntryForm/EntryForm";
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState(null);
 
     const [auth, setAuth] = useContext(AuthContext);
     const history = useHistory();
@@ -41,7 +42,7 @@ const Login = () => {
                     history.push("/");
                 } else {
                     // a bad request, show the an error card
-                    console.log(token);
+                    setError(token.error);
                 }
             } catch (error) {
                 console.error(error);
@@ -63,6 +64,9 @@ const Login = () => {
                 setUsername={setUsername}
                 setPassword={setPassword}
             />
+            <span id="errorMessage">
+                {error ? "The user/password combination is incorrect." : null}
+            </span>
         </div>
     );
 };

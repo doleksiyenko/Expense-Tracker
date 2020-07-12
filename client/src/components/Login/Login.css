@@ -24,3 +24,9 @@
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
+
+#errorMessage {
+    color: red;
+    display: flex;
+    justify-content: center;
+}

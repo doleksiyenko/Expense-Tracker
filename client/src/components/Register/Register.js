@@ -6,6 +6,8 @@ import EntryForm from "../EntryForm/EntryForm";
 const Register = ({ page }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState(null);
+
     const [auth, setAuth] = useContext(AuthContext);
 
     const history = useHistory();
@@ -29,7 +31,6 @@ const Register = ({ page }) => {
         const registeredUser = await response.json();
         if (response.status === 201) {
             // the user was registered succesfully, log in the user, and redirect them to the dashboard
-            console.log(registeredUser);
             const response = await fetch(
                 "http://localhost:5000/auth/user/login",
                 {
@@ -50,11 +51,11 @@ const Register = ({ page }) => {
                 setAuth(true);
                 history.push("/");
             } else {
-                // a bad request, show the an error card
-                console.log(token);
+                // a bad request, show the error card
+                setError(registeredUser.error);
             }
         } else {
-            console.log(registerUser.error);
+            setError(registeredUser.error);
         }
     };
 
@@ -72,6 +73,12 @@ const Register = ({ page }) => {
                 setUsername={setUsername}
                 setPassword={setPassword}
             ></EntryForm>
+            <span id="errorMessage">
+                {error ===
+                '"displayName" must only contain alpha-numeric characters'
+                    ? "Username must only contain alpha-numeric characters (a-z, A-Z, 0-9)"
+                    : error}
+            </span>
         </div>
     );
 };
