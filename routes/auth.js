@@ -16,14 +16,14 @@ router.post("/register", async (req, res) => {
     if (userExists)
         return res
             .status(400)
-            .send("A user with this username already exists!");
+            .json({ error: "A user with this username already exists!" });
     // validate
     const validation = validateUserDetails.validate({
         displayName: req.body.displayName.trim(),
         password: req.body.password.trim(),
     });
     if (validation.error) {
-        res.status(400).send(validation.error.details[0].message);
+        res.status(400).json({ error: validation.error.details[0].message });
     } else {
         // encrypt the password
         const hash = bcrypt.hashSync(req.body.password, 10);
@@ -36,11 +36,11 @@ router.post("/register", async (req, res) => {
         try {
             let saveUser = await newUser.save();
             // if successful send a created response with the user
-            res.status(201).send(saveUser);
+            res.status(201).json({ saveUser });
         } catch (error) {
             // if cannot save, send a bad request status
             console.error(error);
-            res.status(400).send(error);
+            res.status(400).json({ error: error });
         }
     }
 });
